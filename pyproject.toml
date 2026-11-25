@@ -1,0 +1,48 @@
+[project]
+authors = [{name = "Jade2097", email = "jadedogo08@gmail.com"}]
+dependencies = [
+    "numpy",
+    "pandas",
+    "xarray",
+    "fsspec",
+]
+name = "argopy_pixi_mini"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+argopy_pixi_mini = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+test = "pytest tests/ -v"
+
+[tool.pixi.dependencies]
+numpy = ">=2.5.5,<3"
+pandas = ">=3.1.1,<4"
+xarray = ">=2026.9.0,<2027"
+fsspec = ">=2026.9.0,<2027"
+
+[tool.pixi.feature.dev.dependencies]
+pytest = "*"
+
+[tool.pixi.environments]
+dev = ["dev"]
+py312 = ["dev", "py312"]
+py313 = ["dev", "py313"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/argopy"]
+
+[tool.pixi.feature.py312.dependencies]
+python = "3.12.*"
+
+[tool.pixi.feature.py313.dependencies]
+python = "3.13.*"
